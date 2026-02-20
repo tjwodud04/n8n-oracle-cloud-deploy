@@ -1,0 +1,26 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Asia/Seoul
+      - TZ=Asia/Seoul
+      - N8N_SECURE_COOKIE=true
+      - N8N_PROTOCOL=https
+      - N8N_HOST=${N8N_DOMAIN}
+      - WEBHOOK_URL=https://${N8N_DOMAIN}/
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      # Memory optimization for 1GB RAM instances
+      - NODE_OPTIONS=--max-old-space-size=512
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_VERSION_NOTIFICATIONS_ENABLED=false
+      - N8N_CONCURRENCY_PRODUCTION_LIMIT=5
+      # Auto-prune execution history (7 days)
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+    volumes:
+      - /opt/n8n/data:/home/node/.n8n
+    mem_limit: 768m
+    memswap_limit: 2g

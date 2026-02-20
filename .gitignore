@@ -1,0 +1,4 @@
+.env.cloud
+*.tar.gz
+*.log
+.env

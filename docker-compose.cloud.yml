@@ -3,7 +3,7 @@ services:
     image: n8nio/n8n:latest
     restart: always
     ports:
-      - "5678:5678"
+      - "127.0.0.1:5678:5678"
     environment:
       - GENERIC_TIMEZONE=Asia/Seoul
       - TZ=Asia/Seoul
@@ -12,6 +12,9 @@ services:
       - N8N_HOST=${N8N_DOMAIN}
       - WEBHOOK_URL=https://${N8N_DOMAIN}/
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - N8N_BASIC_AUTH_ACTIVE=${N8N_BASIC_AUTH_ACTIVE}
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
       # Memory optimization for 1GB RAM instances
       - NODE_OPTIONS=--max-old-space-size=512
       - N8N_DIAGNOSTICS_ENABLED=false

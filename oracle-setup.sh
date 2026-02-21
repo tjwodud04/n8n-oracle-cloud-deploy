@@ -57,7 +57,7 @@ echo ""
 # --- 4. Firewall ---
 echo "=== 4. Firewall ==="
 if systemctl is-active --quiet firewalld; then
-  sudo firewall-cmd --permanent --zone=public --add-port=5678/tcp
+  # Port 5678 (n8n) is NOT opened externally — nginx proxies all traffic via 443
   sudo firewall-cmd --permanent --zone=public --add-port=80/tcp
   sudo firewall-cmd --permanent --zone=public --add-port=443/tcp
   sudo firewall-cmd --reload
@@ -65,7 +65,7 @@ if systemctl is-active --quiet firewalld; then
   sudo firewall-cmd --permanent --zone=public --list-ports
 else
   echo "firewalld inactive — using iptables"
-  sudo iptables -I INPUT -p tcp --dport 5678 -j ACCEPT
+  # Port 5678 (n8n) is NOT opened externally — nginx proxies all traffic via 443
   sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
   sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT
   sudo dnf install -y iptables-services 2>/dev/null || true

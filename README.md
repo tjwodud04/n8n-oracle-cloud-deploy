@@ -28,7 +28,8 @@ scripts/
 
 - Oracle Cloud account with a Free Tier instance (Oracle Linux 9)
 - SSH key created and instance connection verified
-- Ingress rules for ports 80, 443, 5678 added to OCI Security List (0.0.0.0/0, TCP)
+- Ingress rules for ports 80, 443 added to OCI Security List (0.0.0.0/0, TCP)
+  - ⚠️ **Do NOT open port 5678** — n8n is only accessible via nginx reverse proxy on port 443
 - [DuckDNS](https://www.duckdns.org) subdomain registered with token
 - Docker installed locally with an existing n8n volume
 
@@ -96,7 +97,8 @@ scripts/
 
 - Oracle Cloud 계정 + Free Tier 인스턴스 생성 (Oracle Linux 9)
 - SSH 키 생성 및 인스턴스 연결 확인
-- OCI Security List에 포트 80, 443, 5678 Ingress 규칙 추가 (0.0.0.0/0, TCP)
+- OCI Security List에 포트 80, 443 Ingress 규칙 추가 (0.0.0.0/0, TCP)
+  - ⚠️ **포트 5678은 절대 개방하지 말 것** — n8n은 nginx 리버스 프록시를 통해 443 포트로만 접근
 - [DuckDNS](https://www.duckdns.org) 서브도메인 등록 및 토큰 확인
 - 로컬에 Docker가 설치되어 있고 n8n 볼륨이 존재할 것
 
